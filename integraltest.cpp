@@ -16,15 +16,17 @@ double constFunction3(double x) {
   return 2.5;
 }
 
+#define DOUBLE_COMPARE(x,y) QVERIFY(fabs(x-y) < 0.01)
+
 void IntegralTest::testConstant() {
-  QCOMPARE( integral(constFunction, 0, 10),
-            10.0 ); // 1e-10
-  QCOMPARE( integral(constFunction, 2, 10),
-            8.0 ); // 1e-10
-  QCOMPARE( integral(constFunction2, 2.0, 10),
-            16.0 ); // 1e-10
-  QCOMPARE( integral(constFunction3, 10, 20.0),
-            2.5 * 10 ); // 1e-10
+  DOUBLE_COMPARE(integral(constFunction, 0, 10),
+                 10.0 ); // 1e-10
+  DOUBLE_COMPARE(integral(constFunction, 2, 10),
+                 8.0 ); // 1e-10
+  DOUBLE_COMPARE( integral(constFunction2, 2.0, 10),
+                  16.0 ); // 1e-10
+  DOUBLE_COMPARE( integral(constFunction3, 10, 20.0),
+                  2.5 * 10 ); // 1e-10
 }
 
 // Константная функция
@@ -34,9 +36,9 @@ double xFunc(double x) {
 
 void IntegralTest::testLinear() {
   // y = x   0..1  -> 0.5
-  QCOMPARE( integral(xFunc, 0, 1), 0.5 );
-  QCOMPARE( integral(xFunc, -10, 10), 0.0 );
-  QCOMPARE( integral(xFunc, 0, 4), 8.0 );
+  DOUBLE_COMPARE( integral(xFunc, 0, 1), 0.5 );
+  DOUBLE_COMPARE( integral(xFunc, -10, 10), 0.0 );
+  DOUBLE_COMPARE( integral(xFunc, 0, 4), 8.0 );
 }
 
 double x2Func(double x) {
@@ -45,6 +47,6 @@ double x2Func(double x) {
 
 void IntegralTest::testQuadratic() {
   // y = x^2  x^3/3   0..1  -> 1/3
-  QCOMPARE( integral(x2Func, 0, 1.0), 1.0 / 3.0 );
+  DOUBLE_COMPARE( integral(x2Func, 0, 1.0), 1.0 / 3.0 );
 }
 
