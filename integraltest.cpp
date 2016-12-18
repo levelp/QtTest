@@ -4,15 +4,15 @@
 #include <cmath>
 
 // Константная функция
-double constFunction(double x) {
+double constFunction(double x __attribute__((unused))) {
   return 1;
 }
 
-double constFunction2(double x) {
+double constFunction2(double x __attribute__((unused))) {
   return 2;
 }
 
-double constFunction3(double x) {
+double constFunction3(double x __attribute__((unused))) {
   return 2.5;
 }
 
